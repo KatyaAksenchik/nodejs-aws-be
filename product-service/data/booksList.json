@@ -1,0 +1,66 @@
+[
+  {
+    "count": 4,
+    "description": "Middle Earth is a wonderful, expansive fantasy world filled with turmoil, heroes, evil and innocence. Although our protagonist Frodo Baggins’ quest seems impossible to complete, this trilogy is a tale of triumph in the most impossible circumstances.",
+    "id": "7567ec4b-b10c-48c5-9345-fc73c48a80aa",
+    "price": 2.4,
+    "title": "The Lord of the Rings, by J.R.R. Tolkien",
+    "imageUrl": "https://cdn.lifehack.org/wp-content/uploads/2015/03/9780618640157_custom-s6-c30.jpg"
+  },
+  {
+    "count": 6,
+    "description": "Published in 1939, this novel set during The Great Depression follows one Oklahoma family as they are forced to travel to California. Experience America in a tale where it’s people are divided into the haves and have-nots, the powerful and the powerless.",
+    "id": "7567ec4b-b10c-48c5-9345-fc73c48a80a0",
+    "price": 10,
+    "title": "The Grapes of Wrath, by John Steinbeck",
+    "imageUrl": "https://cdn.lifehack.org/wp-content/uploads/2015/03/9780141185064.jpg"
+  },
+  {
+    "count": 7,
+    "description": "A story of true friendship, The Kite Runner follows Amir as he tries to find the only true friend he’s ever had – despite abandoning him due to ethnic and religious differences that were prominent in Kabul, Afghanistan.",
+    "id": "7567ec4b-b10c-48c5-9345-fc73c48a80a2",
+    "price": 23,
+    "title": "The Kite Runner, by Khaled Hosseini",
+    "imageUrl": "https://cdn.lifehack.org/wp-content/uploads/2015/03/kiterunner.jpg"
+  },
+  {
+    "count": 12,
+    "description": "Grab a towel and accompany human Arthur Dent on a fantastic adventure across the galaxy. Learn not to take the universe so seriously and forget any meaning you’ve applied to anything in your life, because we all know the real meaning of life is 42.",
+    "id": "7567ec4b-b10c-48c5-9345-fc73c48a80a1",
+    "price": 15,
+    "title": "The Hitchhikers Guide to the Galaxy, by Douglas Adams",
+    "imageUrl": "https://cdn.lifehack.org/wp-content/uploads/2015/03/h2g2-01-copy.png"
+  },
+  {
+    "count": 7,
+    "description": "Bizarre and curious, Alice In Wonderland explores the potential of imagination and the reality of fiction. If you’re a fan of escaping the real world, this is definitely the book for you.",
+    "id": "7567ec4b-b10c-48c5-9465-fc73c48a80a2",
+    "price": 23,
+    "title": "Alice in Wonderland, by Lewis Carroll",
+    "imageUrl": "https://cdn.lifehack.org/wp-content/uploads/2015/03/alice_cover.jpg"
+  },
+  {
+    "count": 8,
+    "description": "Published in 1847, this passionate and harrowing story of love, rivalry and revenge follows Catherine Earnshaw and her father’s adopted foundling Heathcliff as they grow into very different adults.",
+    "id": "7567ec4b-b10c-48c5-9345-fc73348a80a1",
+    "price": 15,
+    "title": "Wuthering Heights, by Emily Bronte",
+    "imageUrl": "https://cdn.lifehack.org/wp-content/uploads/2015/03/216215.jpg"
+  },
+  {
+    "count": 2,
+    "description": "Following eighteen years as a political prisoner, Dr Manette is released and returns to England with his daughter Lucie. There, two very different men fall in love with Lucie and become entwined in a tale of love and sacrifice.",
+    "id": "7567ec4b-b10c-48c5-9445-fc73c48a80a2",
+    "price": 23,
+    "title": "A Tale of Two Cities, by Charles Dickens",
+    "imageUrl": "https://cdn.lifehack.org/wp-content/uploads/2015/03/twocities.jpg"
+  },
+  {
+    "count": 3,
+    "description": "This classic novel follows the lives of boys marooned on an island as they regress into savages; and their beautiful, enjoyable island existence collapses into a primitive and cruel nightmare.",
+    "id": "7567ec4b-b10c-45c5-9345-fc73c48a80a1",
+    "price": 15,
+    "title": "Lord of the Flies, by William Golding",
+    "imageUrl": "https://cdn.lifehack.org/wp-content/uploads/2015/03/previous_Lord_of_the_Flies.jpg"
+  }
+]
