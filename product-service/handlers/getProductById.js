@@ -3,6 +3,7 @@ import {
     BOOK_NOT_FOUND,
     SOMETHING_WENT_WRONG,
 } from '../constants/responseMessages.js';
+import { getCorsHeaders } from '../helpers/responseHelper.js';
 
 export const getProductById = async (event) => {
     try {
@@ -12,29 +13,20 @@ export const getProductById = async (event) => {
         if (!foundProduct) {
             return {
                 statusCode: 404,
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Credentials': true,
-                },
+                headers: getCorsHeaders(),
                 body: JSON.stringify({ error: BOOK_NOT_FOUND })
             };
         }
 
         return {
             statusCode: 200,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': true,
-            },
+            headers: getCorsHeaders(),
             body: JSON.stringify(foundProduct)
         };
     } catch (error) {
         return {
             statusCode: 500,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': true,
-            },
+            headers: getCorsHeaders(),
             body: JSON.stringify({ error: SOMETHING_WENT_WRONG })
         };
     }
