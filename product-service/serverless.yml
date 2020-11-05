@@ -15,7 +15,16 @@ provider:
   stage: dev
   region: eu-west-1
 
+  environment:
+    PG_HOST: aws-node-db-instance.csgvm17alrq7.eu-west-1.rds.amazonaws.com
+    PG_PORT: 5432
+    PG_DATABASE: fake-db-name
+    PG_USERNAME: postgres
+    PG_PASSWORD: fakePassword
+
 functions:
+  invokeDb:
+    handler: handlers.invokeDb
   getProductsList:
     handler: handlers.getProductsList
     events:
@@ -29,4 +38,11 @@ functions:
       - http:
           method: get
           path: book/{bookId}
+          cors: true
+  postProduct:
+    handler: handlers.postProduct
+    events:
+      - http:
+          method: post
+          path: book
           cors: true
