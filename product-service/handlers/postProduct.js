@@ -21,12 +21,12 @@ const insertStockQuery = `
 export const postProduct = async (event) => {
     logIncomeRequestEvent('postProduct', event);
 
-    const { title, description, price, image, count } = JSON.parse(event.body);
-
     const client = new Client(dbOptions);
     await client.connect();
 
     try {
+        const { title, description, price, image, count } = JSON.parse(event.body);
+
         const validationError = getValidationError([
             {
                 property: 'description',
@@ -78,13 +78,13 @@ export const postProduct = async (event) => {
             body: JSON.stringify({ message: FETCH_SUCCESS })
         };
     } catch (error) {
+        await client.query('ROLLBACK');
         return {
             statusCode: 500,
             headers: getCorsHeaders(),
             body: JSON.stringify({ error: SOMETHING_WENT_WRONG })
         };
     } finally {
-        await client.query('ROLLBACK');
         client.end();
     }
 };
