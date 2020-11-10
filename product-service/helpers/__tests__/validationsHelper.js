@@ -32,6 +32,6 @@ describe('get Validation Error', () => {
             },
         ];
 
-        expect(getValidationError(data)).toBe(' price: Not a number');
+        expect(getValidationError(data)).toBe('price: Not a number');
     });
 });

@@ -11,16 +11,13 @@ const validationRules = {
 };
 
 export const getValidationError = data => {
-    let error = '';
-
-    data.forEach(({ value, property, validations })=> {
-        validations.forEach(rule => {
-            const validationResult = validationRules[rule](value);
-            if(isExist(validationResult)) {
-                error = `${error} ${property}: ${validationResult}`
-            }
-        })
+    const validationResults = data.flatMap(({value, property, validations}) => {
+        const validators = validations.map(rule => ({ rule, validate: validationRules[rule]}));
+        return validators.map(validator => ({ property, value, error: validator.validate(value) }));
     });
+
+    const errorResults = validationResults.filter(result => isExist(result.error));
+    const error = errorResults.map(({property, error}) => `${ property }: ${ error }`).join(' ');
 
     return error || null;
 };
