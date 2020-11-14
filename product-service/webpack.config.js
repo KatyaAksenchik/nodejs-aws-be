@@ -1,9 +1,13 @@
 const path = require('path');
 // eslint-disable-next-line import/no-unresolved
 const slsw = require('serverless-webpack');
+const webpack = require('webpack');
 
 module.exports = {
     entry: slsw.lib.entries,
+    plugins: [
+        new webpack.IgnorePlugin(/^pg-native$/)
+    ],
     output: {
         libraryTarget: 'commonjs',
         filename: '[name].js',

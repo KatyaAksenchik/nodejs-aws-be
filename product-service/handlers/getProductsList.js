@@ -1,9 +1,23 @@
-import booksList from '../data/booksList.json';
+import { Client } from 'pg';
 import { SOMETHING_WENT_WRONG } from '../constants/responseMessages.js';
 import { getCorsHeaders } from '../helpers/responseHelper.js';
+import { dbOptions } from '../constants/dbOptions.js';
+import { logIncomeRequestEvent } from '../helpers/logRequestHelper.js';
 
-export const getProductsList = async () => {
+const getBooksQuery = `
+    SELECT books.id, title, description, price, image, count from books 
+    LEFT JOIN stocks ON books.id = stocks.book_id
+`;
+
+export const getProductsList = async (event) => {
+    logIncomeRequestEvent('getProductById', event);
+
+    const client = new Client(dbOptions);
+    await client.connect();
+
     try {
+        const { rows: booksList } = await client.query(getBooksQuery);
+
         return {
             statusCode: 200,
             headers: getCorsHeaders(),
@@ -15,5 +29,7 @@ export const getProductsList = async () => {
             headers: getCorsHeaders(),
             body: JSON.stringify({ error: SOMETHING_WENT_WRONG })
         };
+    } finally {
+        client.end();
     }
 };
