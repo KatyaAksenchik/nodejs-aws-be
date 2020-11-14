@@ -18,9 +18,9 @@ provider:
   environment:
     PG_HOST: aws-node-db-instance.csgvm17alrq7.eu-west-1.rds.amazonaws.com
     PG_PORT: 5432
-    PG_DATABASE: fake-db-name
+    PG_DATABASE: aws_node_db
     PG_USERNAME: postgres
-    PG_PASSWORD: fakePassword
+    PG_PASSWORD: tlVB17EtVrh1QsQyTioS
 
 functions:
   invokeDb:
