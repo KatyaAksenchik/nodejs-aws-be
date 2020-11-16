@@ -22,7 +22,7 @@ describe("import Products File", () => {
         expect(result).toEqual({
             statusCode: 200,
             headers: getCorsHeaders(),
-            body: JSON.stringify(signedUrl)
+            body: signedUrl
         });
     });
 
