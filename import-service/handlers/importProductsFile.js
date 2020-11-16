@@ -22,12 +22,12 @@ export const importProductsFile = async (event) => {
             Key: `uploaded/${name}`,
             Expires: 60,
         };
-        const signedUrl = await s3.getSignedUrlPromise('getObject', signedUrlParams);
+        const signedUrl = await s3.getSignedUrlPromise('putObject', signedUrlParams);
 
         return {
             statusCode: 200,
             headers: getCorsHeaders(),
-            body: JSON.stringify(signedUrl)
+            body: signedUrl
         };
     } catch (error) {
         return {
