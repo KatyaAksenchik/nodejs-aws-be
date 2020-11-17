@@ -21,11 +21,12 @@ export const importProductsFile = async (event) => {
             Bucket: BUCKET_NAME,
             Key: `uploaded/${name}`,
             Expires: 60,
+            ContentType: 'text/csv'
         };
         const signedUrl = await s3.getSignedUrlPromise('putObject', signedUrlParams);
 
         return {
-            statusCode: 200,
+            statusCode: 202,
             headers: getCorsHeaders(),
             body: signedUrl
         };
