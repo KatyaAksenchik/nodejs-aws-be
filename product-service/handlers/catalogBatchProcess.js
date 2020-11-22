@@ -1,0 +1,1 @@
+export const catalogBatchProcess = async (event) => {    const books = event.Records.map(({ body }) => body);    console.log("books", books);};

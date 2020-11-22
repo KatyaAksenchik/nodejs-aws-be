@@ -21,6 +21,29 @@ provider:
     PG_DATABASE: fake-db-name
     PG_USERNAME: postgres
     PG_PASSWORD: fakePassword
+    SQS_URL:
+      Ref: SQSQueue
+
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "sqs:*"
+      Resource:
+        - Fn::GetAtt: [ SQSQueue, Arn ]
+
+resources:
+  Resources:
+    SQSQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: "catalogItemsQueue"
+  Outputs:
+    SQSQueueUrl:
+      Value:
+        Ref: SQSQueue
+    SQSQueueArn:
+      Value:
+        Fn::GetAtt: [ SQSQueue, Arn ]
 
 functions:
   invokeDb:
@@ -46,3 +69,12 @@ functions:
           method: post
           path: book
           cors: true
+  catalogBatchProcess:
+    handler: handlers.catalogBatchProcess
+    events:
+      - sqs:
+          batchSize: 5
+          arn:
+            Fn::GetAtt:
+              - SQSQueue
+              - Arn
