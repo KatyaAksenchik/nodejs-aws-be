@@ -19,7 +19,7 @@ export const importFileParser = (event) => {
             const s3Stream = s3.getObject({ Bucket: BUCKET_NAME, Key: recordKey }).createReadStream();
 
             s3Stream
-                .pipe(csv())
+                .pipe(csv({ separator: ';' }))
                 .on('data', async (data) => {
                     sqs.sendMessage({
                         QueueUrl: process.env.SQS_URL,
