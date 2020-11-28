@@ -4,19 +4,12 @@ import { getCorsHeaders } from '../helpers/responseHelper.js';
 import { logIncomeRequestEvent } from '../helpers/logRequestHelper.js';
 import { getValidationError, isExist } from '../helpers/validationsHelper.js';
 import { dbOptions } from '../constants/dbOptions.js';
+import { insertBookQuery, insertStockQuery } from '../db/sqlQueries.js';
 import {
     SOMETHING_WENT_WRONG,
     FETCH_SUCCESS,
     INCORRECT_DATA,
 } from '../constants/responseMessages.js';
-
-const insertBookQuery = `
-    INSERT INTO books (title, description, price, image) VALUES ($1, $2, $3, $4) RETURNING id
-`;
-
-const insertStockQuery = `
-    INSERT INTO stocks (book_id, count) VALUES ($1, $2)
-`;
 
 export const postProduct = async (event) => {
     logIncomeRequestEvent('postProduct', event);

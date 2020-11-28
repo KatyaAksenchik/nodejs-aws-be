@@ -12,21 +12,24 @@ import {
 export const importFileParser = (event) => {
     try {
         const s3 = new AWS.S3({ region: BUCKET_REGION, signatureVersion: SIGNATURE_VERSION });
+        const sqs = new AWS.SQS();
 
         for(const record of event.Records) {
             const recordKey = record.s3.object.key;
             const s3Stream = s3.getObject({ Bucket: BUCKET_NAME, Key: recordKey }).createReadStream();
-            const result = [];
 
             s3Stream
-                .pipe(csv())
-                .on('data', (data) => {
-                    console.log("data", data);
-                    result.push(data);
+                .pipe(csv({ separator: ';' }))
+                .on('data', async (data) => {
+                    sqs.sendMessage({
+                        QueueUrl: process.env.SQS_URL,
+                        MessageBody: JSON.stringify(data)
+                    }, (error) => {
+                        console.log("error", error);
+                        console.log("Send message for: ", data)
+                    })
                 })
                 .on('end', async () => {
-                    console.log("result", result);
-
                     const copyObjectParams = {
                         Bucket: BUCKET_NAME,
                         CopySource: `${BUCKET_NAME}/${recordKey}`,

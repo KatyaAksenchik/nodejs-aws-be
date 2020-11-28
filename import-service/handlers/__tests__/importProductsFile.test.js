@@ -20,7 +20,7 @@ describe("import Products File", () => {
         const result = await importProductsFile(event);
 
         expect(result).toEqual({
-            statusCode: 200,
+            statusCode: 202,
             headers: getCorsHeaders(),
             body: signedUrl
         });

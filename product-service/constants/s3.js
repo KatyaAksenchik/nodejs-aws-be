@@ -1,0 +1,1 @@
+export const MAIN_REGION = 'eu-west-1';
