@@ -54,11 +54,24 @@ resources:
       Type: AWS::SNS::Topic
       Properties:
         TopicName: "createProductTopic"
-    SNSSubscription:
+    SNSPackedSubscription:
       Type: AWS::SNS::Subscription
       Properties:
-        Endpoint: ${env:SNS_EMAIL}
+        Endpoint: ${env:SNS_PACKED_EMAIL}
         Protocol: email
+        FilterPolicy:
+          warehouse:
+            - packed
+        TopicArn:
+          Ref: SNSTopic
+    SNSUnpackedSubscription:
+      Type: AWS::SNS::Subscription
+      Properties:
+        Endpoint: ${env:SNS_UNPACKED_EMAIL}
+        Protocol: email
+        FilterPolicy:
+          warehouse:
+            - unpacked
         TopicArn:
           Ref: SNSTopic
   Outputs:

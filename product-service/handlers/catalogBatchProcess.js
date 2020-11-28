@@ -9,8 +9,6 @@ export const catalogBatchProcess = async (event) => {
     await client.connect();
 
     try {
-        const books = event.Records.map(({ body }) => body);
-
         for(const record of event.Records) {
             const { body } = record;
             const { title, description, price, image, count } = JSON.parse(body);
@@ -25,10 +23,19 @@ export const catalogBatchProcess = async (event) => {
             await client.query('COMMIT');
         }
 
+        const books = event.Records.map(({ body }) => JSON.parse(body));
+        const booksCount = books.reduce((totalCount, { count }) => totalCount + count, 0);
+
         const sns = new AWS.SNS({ region: MAIN_REGION });
         sns.publish({
             Subject: 'These new products were inserted',
             Message: JSON.stringify(books),
+            MessageAttributes: {
+                warehouse: {
+                    DataType: "String",
+                    StringValue: booksCount > 50 ? 'packed' : 'unpacked',
+                }
+            },
             TopicArn: process.env.SNS_ARN
         }, (error) => {
             console.log("SNS publish::error:: ", error);
